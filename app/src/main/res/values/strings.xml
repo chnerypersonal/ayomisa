@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AyoMisa</string>
+    <string name="title_activity_maps">AyoMisa</string>
+    <string name="loading_map_text">Memuat peta…</string>
+    <string name="loading_point_data_text">Memuat data lokasi gereja…</string>
+    <string name="searching_current_location_text">Mencari posisi saat ini…</string>
+    <string name="retrieve_point_data_result">Ditemukan $1 gereja</string>
+</resources>
