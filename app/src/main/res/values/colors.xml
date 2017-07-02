@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3399CC</color>
-    <color name="colorPrimaryDark">#3399CC</color>
+    <color name="colorPrimary">@color/curiousBlue</color>
+    <color name="colorPrimaryDark">@color/curiousBlue</color>
     <color name="colorAccent">#FF4081</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="curiousBlue70Percent">#B43399CC</color>
+    <color name="curiousBlue">#3399CC</color>
+    <color name="pear60Percent">#9AD1FAFF</color>
+    <color name="shadow60Percent">#9Ad8d8d8</color>
 </resources>

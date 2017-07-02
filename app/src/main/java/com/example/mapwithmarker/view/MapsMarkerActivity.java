@@ -2,12 +2,14 @@ package com.example.mapwithmarker.view;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -63,9 +65,11 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
     private SupportMapFragment mapFragment;
     private TextView operationStatusTextView;
     private ImageView myLocationButton;
+    private ImageView routeButton;
     private GoogleMap googleMap;
     private List<Marker> markerList = new ArrayList<>();
     private Marker currentLocationMarker;
+    private Marker selectedPointMarker;
 
     private MapsPresenter presenter;
 
@@ -98,6 +102,7 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         operationStatusTextView = (TextView) findViewById(R.id.operation_status);
         myLocationButton = (ImageView) findViewById(R.id.my_location_button);
+        routeButton = (ImageView) findViewById(R.id.route_button);
     }
 
     private void initClickListeners() {
@@ -110,6 +115,23 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
                 }
             }
         });
+        routeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedPointMarker != null && !isCurrentLocationMarker(selectedPointMarker)) {
+                    navigateToMarker(selectedPointMarker);
+                }
+            }
+        });
+    }
+
+    private void navigateToMarker(Marker marker) {
+        LatLng position = marker.getPosition();
+        String navigationUrl = "google.navigation:q=" + position.latitude + "," + position.longitude;
+
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(navigationUrl));
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
     }
 
     private void initPresenter() {
@@ -123,7 +145,7 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
     }
 
     public void dismissOperationStatus() {
-        operationStatusTextView.setVisibility(View.GONE);
+        operationStatusTextView.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -173,6 +195,7 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_POSITION, DEFAULT_ZOOM));
                 googleMap.setInfoWindowAdapter(new InfoAdapter());
                 googleMap.setOnMarkerClickListener(new MarkerClickListener());
+                googleMap.setOnMapClickListener(new MapClickListener());
 
                 presenter.onMapReady();
             }
@@ -232,8 +255,7 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
         showOperationStatus(searchingNearestPointText);
         Marker nearestMarker = DistanceHelper.findNearestMarker(currentLocationMarker, markerList);
 
-        nearestMarker.showInfoWindow();
-        centerViewAboveMarker(nearestMarker);
+        onMarkerGotFocus(nearestMarker);
         showResultMessage(nearestPointFoundText);
     }
 
@@ -295,6 +317,21 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
         }
     }
 
+    private void onMarkerGotFocus(Marker marker) {
+        selectedPointMarker = marker;
+        marker.showInfoWindow();
+        centerViewAboveMarker(marker);
+        if (isCurrentLocationMarker(selectedPointMarker)) {
+            hideRouteButton();
+        } else {
+            showRouteButton();
+        }
+    }
+
+    private boolean isCurrentLocationMarker(Marker marker) {
+        return marker.getTag() == null;
+    }
+
     private void centerViewAboveMarker(Marker marker) {
         View mapContainer = findViewById(R.id.map);
         int mapHeight = mapContainer.getHeight();
@@ -314,12 +351,27 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
         googleMap.animateCamera(center, 500, null);
     }
 
+    private void showRouteButton() {
+        routeButton.setVisibility(View.VISIBLE);
+    }
+
+    private void hideRouteButton() {
+        routeButton.setVisibility(View.GONE);
+    }
+
     private class MarkerClickListener implements GoogleMap.OnMarkerClickListener {
         @Override
         public boolean onMarkerClick(final Marker marker) {
-            marker.showInfoWindow();
-            centerViewAboveMarker(marker);
+            onMarkerGotFocus(marker);
             return true;
+        }
+    }
+
+    private class MapClickListener implements GoogleMap.OnMapClickListener {
+        @Override
+        public void onMapClick(LatLng latLng) {
+            selectedPointMarker = null;
+            hideRouteButton();
         }
     }
 
