@@ -11,7 +11,7 @@ import java.util.List;
 public interface MapsView {
     void displayPointsLocation(List<PointData> pointDataList);
 
-    void showError(String message);
+    void showResultMessage(String message);
 
     void loadMap();
 

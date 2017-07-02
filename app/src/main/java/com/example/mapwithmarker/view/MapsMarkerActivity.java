@@ -1,14 +1,26 @@
 package com.example.mapwithmarker.view;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Point;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mapwithmarker.R;
+import com.example.mapwithmarker.helper.DistanceHelper;
 import com.example.mapwithmarker.model.PointData;
 import com.example.mapwithmarker.presenter.MapsPresenter;
 import com.example.mapwithmarker.presenter.MapsPresenterImpl;
@@ -24,6 +36,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
@@ -38,10 +51,21 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
     private String loadingPointDataText;
     private String searchingCurrentLocationText;
     private String retrievePointDataResultTemplateText;
+    private String locationProviderErrorText;
+    private String locationPermissionDeniedText;
+    private String currentLocationInfoTitle;
+    private String findCurrentLocationSuccessText;
+    private String currentLocationNotRetrievedYetText;
+    private String pointsNotAvailableText;
+    private String searchingNearestPointText;
+    private String nearestPointFoundText;
 
     private SupportMapFragment mapFragment;
     private TextView operationStatusTextView;
+    private ImageView myLocationButton;
     private GoogleMap googleMap;
+    private List<Marker> markerList = new ArrayList<>();
+    private Marker currentLocationMarker;
 
     private MapsPresenter presenter;
 
@@ -51,6 +75,7 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
         setContentView(R.layout.activity_maps);
         initResources();
         bindViews();
+        initClickListeners();
         initPresenter();
     }
 
@@ -58,12 +83,33 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
         loadingMapText = getString(R.string.loading_map_text);
         loadingPointDataText = getString(R.string.loading_point_data_text);
         searchingCurrentLocationText = getString(R.string.searching_current_location_text);
-        retrievePointDataResultTemplateText =  getString(R.string.retrieve_point_data_result);
+        retrievePointDataResultTemplateText = getString(R.string.retrieve_point_data_result);
+        locationProviderErrorText = getString(R.string.location_provider_error_text);
+        locationPermissionDeniedText = getString(R.string.location_permission_denied_text);
+        currentLocationInfoTitle = getString(R.string.current_location_info_title);
+        findCurrentLocationSuccessText = getString(R.string.current_location_found);
+        currentLocationNotRetrievedYetText = getString(R.string.current_location_not_retrieved_yet);
+        pointsNotAvailableText = getString(R.string.points_not_available_text);
+        searchingNearestPointText = getString(R.string.searching_nearest_point_text);
+        nearestPointFoundText = getString(R.string.nearest_point_found_text);
     }
 
     private void bindViews() {
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         operationStatusTextView = (TextView) findViewById(R.id.operation_status);
+        myLocationButton = (ImageView) findViewById(R.id.my_location_button);
+    }
+
+    private void initClickListeners() {
+        myLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (currentLocationMarker != null) {
+                    LatLng latLng = currentLocationMarker.getPosition();
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                }
+            }
+        });
     }
 
     private void initPresenter() {
@@ -80,14 +126,16 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
         operationStatusTextView.setVisibility(View.GONE);
     }
 
-    private void showResultMessage(String message) {
+    @Override
+    public void showResultMessage(String message) {
+        dismissOperationStatus();
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void displayPointsLocation(List<PointData> pointDataList) {
-        dismissOperationStatus();
 
+        markerList.clear();
         LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
 
         for (PointData pointData : pointDataList) {
@@ -95,14 +143,16 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
             Double longitude = Double.parseDouble(pointData.getLongitude());
             LatLng position = new LatLng(latitude, longitude);
 
-            googleMap.addMarker(
+            Marker marker = googleMap.addMarker(
                     new MarkerOptions()
                             .position(position)
                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_church))
                             .anchor(MARKER_ANCHOR_HORIZONTAL, MARKER_ANCHOR_VERTICAL)
                             .title(pointData.getName())
-            ).setTag(pointData);
+            );
+            marker.setTag(pointData);
 
+            markerList.add(marker);
             boundsBuilder.include(position);
         }
 
@@ -113,12 +163,6 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
     }
 
     @Override
-    public void showError(String message) {
-        dismissOperationStatus();
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
     public void loadMap() {
         showOperationStatus(loadingMapText);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
@@ -126,7 +170,6 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
             public void onMapReady(GoogleMap googleMap) {
                 MapsMarkerActivity.this.googleMap = googleMap;
 
-                googleMap.setMyLocationEnabled(true);
                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DEFAULT_POSITION, DEFAULT_ZOOM));
                 googleMap.setInfoWindowAdapter(new InfoAdapter());
                 googleMap.setOnMarkerClickListener(new MarkerClickListener());
@@ -141,31 +184,142 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
         showOperationStatus(loadingPointDataText);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.more_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_search_current_location:
+                refreshCurrentLocation();
+                break;
+            case R.id.menu_search_nearest_point:
+                searchNearestPoint();
+                break;
+        }
+        return true;
+    }
+
+    private void refreshCurrentLocation() {
+        showOperationStatus(searchingCurrentLocationText);
+        findCurrentLocation(new CurrentLocationCallback() {
+            @Override
+            public void onLocationUpdated(Location location) {
+                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                showResultMessage(findCurrentLocationSuccessText);
+                myLocationButton.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    private void searchNearestPoint() {
+        if (currentLocationMarker == null) {
+            showResultMessage(currentLocationNotRetrievedYetText);
+            return;
+        }
+
+        if (markerList.isEmpty()) {
+            showResultMessage(pointsNotAvailableText);
+            return;
+        }
+
+        showOperationStatus(searchingNearestPointText);
+        Marker nearestMarker = DistanceHelper.findNearestMarker(currentLocationMarker, markerList);
+
+        nearestMarker.showInfoWindow();
+        centerViewAboveMarker(nearestMarker);
+        showResultMessage(nearestPointFoundText);
+    }
+
+    private void findCurrentLocation(final CurrentLocationCallback callback) {
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            showResultMessage(locationPermissionDeniedText);
+            return;
+        }
+
+        final LocationManager locationManager = (LocationManager) getSystemService(
+                Context.LOCATION_SERVICE);
+
+        locationManager.requestSingleUpdate(
+                LocationManager.GPS_PROVIDER, new LocationListener() {
+                    @Override
+                    public void onLocationChanged(Location location) {
+                        locationManager.removeUpdates(this);
+                        dismissOperationStatus();
+                        updateCurrentLocationMarker(location);
+                        callback.onLocationUpdated(location);
+                    }
+
+                    @Override
+                    public void onStatusChanged(String provider, int status, Bundle bundle) {
+
+                    }
+
+                    @Override
+                    public void onProviderEnabled(String s) {
+
+                    }
+
+                    @Override
+                    public void onProviderDisabled(String s) {
+                        locationManager.removeUpdates(this);
+                        showResultMessage(locationProviderErrorText);
+                    }
+                }, null);
+    }
+
+    private void updateCurrentLocationMarker(Location location) {
+        if (googleMap == null) {
+            return;
+        }
+
+        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+        if (currentLocationMarker == null) {
+            currentLocationMarker = googleMap.addMarker(
+                    new MarkerOptions()
+                            .position(latLng)
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_position))
+                            .title(currentLocationInfoTitle)
+            );
+        } else {
+            currentLocationMarker.setPosition(latLng);
+        }
+    }
+
+    private void centerViewAboveMarker(Marker marker) {
+        View mapContainer = findViewById(R.id.map);
+        int mapHeight = mapContainer.getHeight();
+
+        Projection projection = googleMap.getProjection();
+
+        LatLng markerLatLng = new LatLng(marker.getPosition().latitude,
+                marker.getPosition().longitude);
+        Point markerScreenPosition = projection.toScreenLocation(markerLatLng);
+        Point pointQuarterScreenAbove = new Point(markerScreenPosition.x,
+                markerScreenPosition.y - (mapHeight / 4));
+
+        LatLng aboveMarkerLatLng = projection
+                .fromScreenLocation(pointQuarterScreenAbove);
+
+        CameraUpdate center = CameraUpdateFactory.newLatLng(aboveMarkerLatLng);
+        googleMap.animateCamera(center, 500, null);
+    }
+
     private class MarkerClickListener implements GoogleMap.OnMarkerClickListener {
         @Override
         public boolean onMarkerClick(final Marker marker) {
             marker.showInfoWindow();
             centerViewAboveMarker(marker);
             return true;
-        }
-
-        private void centerViewAboveMarker(Marker marker) {
-            View mapContainer = findViewById(R.id.map);
-            int mapHeight = mapContainer.getHeight();
-
-            Projection projection = googleMap.getProjection();
-
-            LatLng markerLatLng = new LatLng(marker.getPosition().latitude,
-                    marker.getPosition().longitude);
-            Point markerScreenPosition = projection.toScreenLocation(markerLatLng);
-            Point pointQuarterScreenAbove = new Point(markerScreenPosition.x,
-                    markerScreenPosition.y - (mapHeight / 4));
-
-            LatLng aboveMarkerLatLng = projection
-                    .fromScreenLocation(pointQuarterScreenAbove);
-
-            CameraUpdate center = CameraUpdateFactory.newLatLng(aboveMarkerLatLng);
-            googleMap.animateCamera(center, 500, null);
         }
     }
 
@@ -203,5 +357,9 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
         public View getInfoContents(Marker marker) {
             return null;
         }
+    }
+
+    private interface CurrentLocationCallback {
+        void onLocationUpdated(Location location);
     }
 }

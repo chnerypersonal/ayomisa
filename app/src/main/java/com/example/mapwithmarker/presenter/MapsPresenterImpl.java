@@ -71,7 +71,7 @@ public class MapsPresenterImpl implements MapsPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        view.showError(e.getMessage());
+                        view.showResultMessage(e.getMessage());
                     }
 
                     @Override

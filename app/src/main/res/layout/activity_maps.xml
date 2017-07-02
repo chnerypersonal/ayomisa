@@ -11,6 +11,20 @@
         android:layout_height="match_parent"
         tools:context="com.example.mapwithmarker.view.MapsMarkerActivity" />
 
+    <ImageView
+        android:id="@+id/my_location_button"
+        android:layout_width="@dimen/my_location_button_size"
+        android:layout_height="@dimen/my_location_button_size"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:visibility="gone"
+        android:padding="10dp"
+        android:background="@drawable/my_location_button_background"
+        android:src="@drawable/ic_position"/>
+
     <TextView
         android:id="@+id/operation_status"
         android:layout_width="match_parent"
