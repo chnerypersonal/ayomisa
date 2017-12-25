@@ -1,6 +1,7 @@
 package com.example.mapwithmarker.presenter;
 
 import com.example.mapwithmarker.api.PointsDataApi;
+import com.example.mapwithmarker.model.LocalPointData;
 import com.example.mapwithmarker.model.PointData;
 import com.example.mapwithmarker.model.PointResponse;
 import com.example.mapwithmarker.view.MapsMarkerActivity;
@@ -10,6 +11,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
 
@@ -50,7 +53,14 @@ public class MapsPresenterImpl implements MapsPresenter {
 
     @Override
     public void onMapReady() {
-        getPointsLocationFromNetwork();
+        getPointsLocationFromLocal();
+    }
+
+    private void getPointsLocationFromLocal() {
+        String jsonData = view.getLocalPointsLocationString();
+        List<LocalPointData> localPointDataList
+                = new Gson().fromJson(jsonData, new TypeToken<List<LocalPointData>>(){}.getType());
+        view.displayLocalPointsLocation(localPointDataList);
     }
 
     private void getPointsLocationFromNetwork() {

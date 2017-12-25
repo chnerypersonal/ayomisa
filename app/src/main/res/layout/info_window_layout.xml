@@ -25,7 +25,7 @@
         android:text="Alamat Alamat Alamat Alamat Alamat Alamat Alamat Alamat  Alamat Alamat A"/>
 
     <TextView
-        android:id="@+id/day_schedule"
+        android:id="@+id/detailInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -33,16 +33,5 @@
         android:maxWidth="@dimen/info_window_max_width"
         android:singleLine="false"
         android:text="Misa harian : \n 06:00 18:00"/>
-
-    <TextView
-        android:id="@+id/week_schedule"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        style="@style/info_window_text_style"
-        android:maxWidth="@dimen/info_window_max_width"
-        android:singleLine="false"
-        android:text="Misa mingguan : \n 06:00 07:30 09:00 11:00 17:00 19:00"/>
-
 
 </LinearLayout>

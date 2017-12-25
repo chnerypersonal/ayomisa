@@ -1,5 +1,6 @@
 package com.example.mapwithmarker.view;
 
+import com.example.mapwithmarker.model.LocalPointData;
 import com.example.mapwithmarker.model.PointData;
 
 import java.util.List;
@@ -11,9 +12,13 @@ import java.util.List;
 public interface MapsView {
     void displayPointsLocation(List<PointData> pointDataList);
 
+    void displayLocalPointsLocation(List<LocalPointData> pointDataList);
+
     void showResultMessage(String message);
 
     void loadMap();
 
     void showLoadingDataFromNetworkStatus();
+
+    String getLocalPointsLocationString();
 }

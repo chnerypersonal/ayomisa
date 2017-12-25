@@ -15,4 +15,110 @@
     <string name="points_not_available_text">Daftar lokasi gereja belum tersedia\nMohon tunggu proses pengambilan data selesai</string>
     <string name="searching_nearest_point_text">Mencari gereja terdekat…</string>
     <string name="nearest_point_found_text">Gereja terdekat berhasil ditemukan</string>
+
+    <string name="points_location_json_data">
+
+        [
+         {
+           \"id\": 1,
+           \"NamaGereja\": \"Paroki Katedral – St.Maria Diangkat ke Surga\",
+           \"AlamatGereja\": \"Jl.Katedral 7, Jakarta 10710\",
+           \"Telp\": \"(021) 345-7746, (021) 351-9186\",
+           \"JadwalMisa\": \"Misa Harian: 06.00, 18.00 , \nJumat I : 06.00, 12.00, 18.00\nSabtu Sore: 18.00 \nMinggu: 06.00, 07.30, 09.00, 11.00, 17.00, 19.00\",
+           \"Website\": \"http://www.katedraljakarta.or.id\",
+           \"Daerah\": \"Jakarta Pusat\",
+           \"Lat\": -6.169225,
+           \"Long\": 106.8308743
+         },
+         {
+           \"id\": 2,
+           \"NamaGereja\": \"Paroki St.Paskalis - Cempaka Putih\",
+           \"AlamatGereja\": \"Jl.Letjen Suprapto, Kav.C 1/23, Jakarta 10520\",
+           \"Telp\": \"(021) 420-2793, (021) 420-3743\",
+           \"JadwalMisa\": \"Misa Harian (Senin-Jumat) : 05.30     \nJumat I : 05.30, 12.00, 17.30\nSabtu Sore: 17.30 \nMinggu: 06.00, 07.30, 09.30, 17.30\",
+           \"Website\": \"http://www.gerejapaskalis.com\",
+           \"Daerah\": \"Jakarta Pusat\",
+           \"Lat\": -6.171701,
+           \"Long\": 106.8622199
+         },
+         {
+           \"id\": 3,
+           \"NamaGereja\": \"Kapel Lourdes\",
+           \"AlamatGereja\": \"Jl.Serdang No. 1 RT 002/10, Kemayoran, Jakarta 10620\",
+           \"Telp\": \"\",
+           \"JadwalMisa\": \"Sabtu Sore: 18.00\",
+           \"Website\": \"\",
+           \"Daerah\": \"Jakarta Pusat\",
+           \"Lat\": -6.1612962,
+           \"Long\": 106.8599538
+         },
+         {
+           \"id\": 5,
+           \"NamaGereja\": \"Paroki Hati Kudus - Kramat\",
+           \"AlamatGereja\": \"Jl.Kramat Raya 134, Jakarta 10430\",
+           \"Telp\": \"(021) 390-9689\",
+           \"JadwalMisa\": \"Misa Harian: 18.00 \nSabtu Sore: 17.00 \nMinggu: 06.00, 07.30, 09.00, 17.00\",
+           \"Website\": \"\",
+           \"Daerah\": \"Jakarta Pusat\",
+           \"Lat\": -6.1872494,
+           \"Long\": 106.841302
+         },
+         {
+           \"id\": 6,
+           \"NamaGereja\": \"Paroki St.Ignatius Loyola\",
+           \"AlamatGereja\": \"Jl. Malang No.22, Menteng,Jakarta 10310\",
+           \"Telp\": \"(021) 315-1324, (021) 315-0924\",
+           \"JadwalMisa\": \"Misa Harian: 06.00, \nJumat Pertama: 18.00\nSabtu Sore: 17.30, \nMinggu: 06.30, 08.30, 17.30\",
+           \"Website\": \"http://www.paroki-stignatius.org\",
+           \"Daerah\": \"Jakarta Pusat\",
+           \"Lat\": -6.20531,
+           \"Long\": 106.8367229
+         },
+         {
+           \"id\": 7,
+           \"NamaGereja\": \"Paroki Kristus Raja - Pejompongan\",
+           \"AlamatGereja\": \"Jl.Danau Toba No. 56, Pejompongan, Jakarta 10210\",
+           \"Telp\": \"(021) 573-3383,  (021) 573-4375\",
+           \"JadwalMisa\": \"Misa Harian (Senin, Rabu,Jumat): 06.00,  \nMisa Harian (Selasa, Kamis): 18.00\nSabtu Sore: 17.30 \nMinggu: 09.00, 11.30 (English)\",
+           \"Website\": \"http://www.kristusraja.com/\",
+           \"Daerah\": \"Jakarta Pusat\",
+           \"Lat\": -6.2081957,
+           \"Long\": 106.8068695
+         },
+         {
+           \"id\": 8,
+           \"NamaGereja\": \"Paroki  St.Theresia\",
+           \"AlamatGereja\": \"Jl. Gereja Theresia no.2, Jakarta 10350\",
+           \"Telp\": \"(021) 391-7708\",
+           \"JadwalMisa\": \"Misa Harian (Senin-Jumat): 07.00, 12.00 (hanya Jumat) dan 18.00\nSabtu Sore: 18.00  \nMinggu: 06.00, 08.00,10.00, 17.00 dan 19.00\nExpatriate : Sabtu : 15.30 dan Minggu 15.00 (English)\",
+           \"Website\": \"http://www.gerejatheresia.org\",
+           \"Daerah\": \"Jakarta Pusat\",
+           \"Lat\": -6.1889904,
+           \"Long\": 106.8232924
+         },
+         {
+           \"id\": 9,
+           \"NamaGereja\": \"Paroki St.Maria Bunda Perantara - Cideng\",
+           \"AlamatGereja\": \"Jl.Tanah Abang II / 105, Jakarta 10150\",
+           \"Telp\": \"(021) 384-3784\",
+           \"JadwalMisa\": \"Misa Harian: 05.45 \nSabtu Sore: 17.00 \nMinggu: 06.30, 08.00, 17.00\",
+           \"Website\": \"\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.1763109,
+           \"Long\": 106.8082244
+         },
+         {
+           \"id\": 10,
+           \"NamaGereja\": \"Paroki St.Kristoforus - Grogol\",
+           \"AlamatGereja\": \"Jl.Satria IV Blok C No.68, Jelambar, Jakarta 11460\",
+           \"Telp\": \"(021) 567-2361, (021) 560-2644, (021) 560-2650\",
+           \"JadwalMisa\": \"Misa Harian: 05.45 \nSabtu Sore: 16.30, 18.30 \nMinggu: 05.45, 07.30, 10.00, 16.30, 18.30\",
+           \"Website\": \"\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.1642499,
+           \"Long\": 106.7846925
+         }
+        ]
+
+    </string>
 </resources>

@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.mapwithmarker.R;
 import com.example.mapwithmarker.helper.DistanceHelper;
+import com.example.mapwithmarker.model.LocalPointData;
 import com.example.mapwithmarker.model.PointData;
 import com.example.mapwithmarker.presenter.MapsPresenter;
 import com.example.mapwithmarker.presenter.MapsPresenterImpl;
@@ -155,6 +156,36 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
     }
 
     @Override
+    public void displayLocalPointsLocation(List<LocalPointData> pointDataList) {
+
+        markerList.clear();
+        LatLngBounds.Builder boundsBuilder = new LatLngBounds.Builder();
+
+        for (LocalPointData pointData : pointDataList) {
+            Double latitude = Double.parseDouble(pointData.getLatitude());
+            Double longitude = Double.parseDouble(pointData.getLongitude());
+            LatLng position = new LatLng(latitude, longitude);
+
+            Marker marker = googleMap.addMarker(
+                    new MarkerOptions()
+                            .position(position)
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_church))
+                            .anchor(MARKER_ANCHOR_HORIZONTAL, MARKER_ANCHOR_VERTICAL)
+                            .title(pointData.getName())
+            );
+            marker.setTag(pointData);
+
+            markerList.add(marker);
+            boundsBuilder.include(position);
+        }
+
+        //googleMap.animateCamera(
+        //        CameraUpdateFactory.newLatLngBounds(boundsBuilder.build(), MARKER_BOUNDS_PADDING));
+
+        showResultMessage(retrievePointDataResultTemplateText.replace("$1", Integer.toString(pointDataList.size())));
+    }
+
+    @Override
     public void displayPointsLocation(List<PointData> pointDataList) {
 
         markerList.clear();
@@ -205,6 +236,11 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
     @Override
     public void showLoadingDataFromNetworkStatus() {
         showOperationStatus(loadingPointDataText);
+    }
+
+    @Override
+    public String getLocalPointsLocationString() {
+        return getString(R.string.points_location_json_data);
     }
 
     @Override
@@ -380,27 +416,24 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
         private final View contentView;
         private TextView name;
         private TextView address;
-        private TextView daySchedule;
-        private TextView weekSchedule;
+        private TextView info;
 
         InfoAdapter() {
             contentView = getLayoutInflater().inflate(R.layout.info_window_layout, null);
             name = (TextView) contentView.findViewById(R.id.name);
             address = (TextView) contentView.findViewById(R.id.address);
-            daySchedule = (TextView) contentView.findViewById(R.id.day_schedule);
-            weekSchedule = (TextView) contentView.findViewById(R.id.week_schedule);
+            info = (TextView) contentView.findViewById(R.id.detailInfo);
         }
 
         @Override
         public View getInfoWindow(Marker marker) {
-            PointData data = (PointData) marker.getTag();
+            LocalPointData data = (LocalPointData) marker.getTag();
 
             if (data == null) return null;
 
             name.setText(data.getName());
-            address.setText(data.getAddress());
-            daySchedule.setText("Misa Harian : \n" + data.getDaySchedule());
-            weekSchedule.setText("Misa Mingguan : \n" + data.getWeekSchedule());
+            address.setText(data.getAddress() + "\n" + data.getArea());
+            info.setText(data.getSchedule() + "\n" + data.getPhone() + "\n" + data.getWebsite());
 
             return contentView;
         }
