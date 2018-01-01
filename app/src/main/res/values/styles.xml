@@ -19,4 +19,12 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
+    <style name="about_page_text_style" parent="info_window_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/about_page_item_vertical_spacing</item>
+        <item name="android:singleLine">false</item>
+    </style>
+
 </resources>

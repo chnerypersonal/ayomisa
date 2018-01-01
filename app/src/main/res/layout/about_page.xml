@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:background="@drawable/about_page_background">
+
+    <TextView
+        style="@style/about_page_text_style"
+        android:textSize="20sp"
+        android:text="AyoMisa v1.0"/>
+
+    <TextView
+        style="@style/about_page_text_style"
+        android:textSize="13sp"
+        android:text="@string/about_page_apps_description"/>
+
+    <TextView
+        style="@style/about_page_text_style"
+        android:text="Project Director: \n Alexander Louiciano"/>
+
+    <TextView
+        style="@style/about_page_text_style"
+        android:text="Software Developer: \n Henry Priyono"/>
+
+    <TextView
+        style="@style/about_page_text_style"
+        android:text="Data Provider: \n Petrus H.K. Gumarang"/>
+
+    <TextView
+        style="@style/about_page_text_style"
+        android:text="Data Contributor: \n Henry Priyono \n Alexander Louiciano"/>
+
+</LinearLayout>

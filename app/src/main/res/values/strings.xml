@@ -121,4 +121,10 @@
         ]
 
     </string>
+    <string name="menu_text_about">Tentang AyoMisa</string>
+    <string name="about_page_apps_description">
+        Sebuah aplikasi untuk memudahkan pengguna
+        dalam mencari informasi jadwal misa dan lokasi gereja di area sekitar
+        (saat ini baru mencakup wilayah Jakarta),
+        termasuk pencarian gereja terdekat beserta rute navigasinya.</string>
 </resources>

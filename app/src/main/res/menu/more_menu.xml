@@ -4,4 +4,6 @@
         android:title="@string/menu_text_search_current_location"/>
     <item android:id="@+id/menu_search_nearest_point"
         android:title="@string/menu_text_search_nearest_point"/>
+    <item android:id="@+id/menu_about"
+        android:title="@string/menu_text_about"/>
 </menu>

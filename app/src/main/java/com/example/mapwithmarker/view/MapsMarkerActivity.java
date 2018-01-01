@@ -49,6 +49,7 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
     public static final float MARKER_ANCHOR_HORIZONTAL = 0.4375f;
     public static final float MARKER_ANCHOR_VERTICAL = 0.84375f;
     public static final int MARKER_BOUNDS_PADDING = 100;
+    private static final String TAG_ABOUT_PAGE_DIALOG = "ABOUT_PAGE_DIALOG";
 
     private String loadingMapText;
     private String loadingPointDataText;
@@ -260,6 +261,9 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
             case R.id.menu_search_nearest_point:
                 searchNearestPoint();
                 break;
+            case R.id.menu_about:
+                openAboutPage();
+                break;
         }
         return true;
     }
@@ -293,6 +297,11 @@ public class MapsMarkerActivity extends AppCompatActivity implements MapsView {
 
         onMarkerGotFocus(nearestMarker);
         showResultMessage(nearestPointFoundText);
+    }
+
+    private void openAboutPage() {
+        AboutDialogFragment aboutDialogFragment = new AboutDialogFragment();
+        aboutDialogFragment.show(getSupportFragmentManager(), TAG_ABOUT_PAGE_DIALOG);
     }
 
     private void findCurrentLocation(final CurrentLocationCallback callback) {
