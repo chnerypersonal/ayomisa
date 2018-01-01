@@ -79,7 +79,7 @@
            \"NamaGereja\": \"Paroki Kristus Raja - Pejompongan\",
            \"AlamatGereja\": \"Jl.Danau Toba No. 56, Pejompongan, Jakarta 10210\",
            \"Telp\": \"(021) 573-3383,  (021) 573-4375\",
-           \"JadwalMisa\": \"Misa Harian (Senin, Rabu,Jumat): 06.00,  \nMisa Harian (Selasa, Kamis): 18.00\nSabtu Sore: 17.30 \nMinggu: 09.00, 11.30 (English)\",
+           \"JadwalMisa\": \"Misa Harian (Senin, Rabu,Jumat): 06.00,  \nMisa Harian (Selasa, Kamis): 18.00\nSabtu Sore: 17.30 \nMinggu: 09.00 dan 11.30 (English)\",
            \"Website\": \"http://www.kristusraja.com/\",
            \"Daerah\": \"Jakarta Pusat\",
            \"Lat\": -6.2081957,
@@ -117,6 +117,160 @@
            \"Daerah\": \"Jakarta Barat\",
            \"Lat\": -6.1642499,
            \"Long\": 106.7846925
+         },
+         {
+           \"id\": 11,
+           \"NamaGereja\": \"Stasi St Polikarpus\",
+           \"AlamatGereja\": \"\",
+           \"Telp\": \"\",
+           \"JadwalMisa\": \"Sabtu: 17.30; \nMinggu: 09.00, 17.00\",
+           \"Website\": \"\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.1609362,
+           \"Long\": 106.7940445
+         },
+         {
+           \"id\": 12,
+           \"NamaGereja\": \"Paroki Damai Kristus - Kampung Duri\",
+           \"AlamatGereja\": \"Jl.Duri Selatan V/29, Jakarta 11270\",
+           \"Telp\": \"(021) 630-3147\",
+           \"JadwalMisa\": \"Misa Harian: 06.00 (kecuali Sabtu dan Senin) \nSabtu Sore: 18.00 \nMinggu: 06.30, 08.30, 18.00\",
+           \"Website\": \"\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.1748332,
+           \"Long\": 106.7913356
+         },
+         {
+           \"id\": 14,
+           \"NamaGereja\": \"Paroki Bunda Hati Kudus - Kemakmuran\",
+           \"AlamatGereja\": \"Jl.K.H Hasyim Ashari 28, Jakarta 10130\",
+           \"Telp\": \"(021) 633-7363,  (021) 633-9343\",
+           \"JadwalMisa\": \"Misa harian (Senin-Jumat) : 06.00, \nJumat Pertama : 06.00, 12.00, 18.30\nSabtu : 17.00\nPengakuan Dosa : Sabtu dan Minggu 16.00\nMinggu : 06.30, 08.30, 17.00\",
+           \"Website\": \"http://www.parokibhk.com  \",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.1649391,
+           \"Long\": 106.8137093
+         },
+         {
+           \"id\": 16,
+           \"NamaGereja\": \"Paroki St.Petrus dan Paulus - Mangga Besar\",
+           \"AlamatGereja\": \"Jl.Raya Mangga Besar 55, Jakarta 11170\",
+           \"Telp\": \"(021) 629-4867, (021) 601-1893\",
+           \"JadwalMisa\": \"Misa Harian: 06.15 \nSabtu Sore: 18.00 \nMinggu: 07.00, 09.00, 16.30, 18.30\",
+           \"Website\": \"\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.1480337,
+           \"Long\": 106.8234994
+         },
+         {
+           \"id\": 17,
+           \"NamaGereja\": \"Paroki Kristus Salvator - Slipi\",
+           \"AlamatGereja\": \"Jl.K.S.Tubun 128, Slipi, Jakarta 11410\",
+           \"Telp\": \"(021) 548-1844\",
+           \"JadwalMisa\": \"Misa Harian: 06.00 \nSabtu Sore: 17.30 \nMinggu: 07.00, 09.00, 17.30\",
+           \"Website\": \"\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.1966711,
+           \"Long\": 106.8022011
+         },
+         {
+           \"id\": 20,
+           \"NamaGereja\": \"Paroki St.Maria de Fatima - Toasebio\",
+           \"AlamatGereja\": \"Jl.Kemenangan III / 47, Jakarta 11150\",
+           \"Telp\": \"(021) 629-3527, (021) 625-0421\",
+           \"JadwalMisa\": \"Misa Harian: 06.00 , \nJumat pertama 18.00\nSabtu Sore: 18.00 \nMinggu: 06.00, 07.30, 09.30, 16.15 (Bhs Mandarin), 18.00\",
+           \"Website\": \"http://santamariadefatima.org/\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.1437806,
+           \"Long\": 106.8097557
+         },
+         {
+           \"id\": 21,
+           \"NamaGereja\": \"Paroki St.Andreas - Kedoya\",
+           \"AlamatGereja\": \"Kompleks Green Garden Blok J.5/1, Jakarta 11520\",
+           \"Telp\": \"(021) 582-4971\",
+           \"JadwalMisa\": \"Misa Harian: 06.00, \n(Rabu) 12.00, \n(Jumat pertama) 19.00\nSabtu Sore: 16.30 \nMinggu: 06.00, 08.00, 16.30, 18.30\nPengakuan Dosa : Setiap jumat : jam 16.00 – 18.00\",
+           \"Website\": \"http://www.st-andreas.org\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.1684947,
+           \"Long\": 106.7575445
+         },
+         {
+           \"id\": 22,
+           \"NamaGereja\": \"Paroki Maria Bunda Karmel - Tomang\",
+           \"AlamatGereja\": \"Jl.Karmel Raya No.2, Jakarta 11530\",
+           \"Telp\": \"(021) 548-3853\",
+           \"JadwalMisa\": \"Misa Harian : 06.00\nJumat I: 06.00, 12.00, 19.00\nSabtu Sore: 16.30, 19.00 \nMinggu: 06.30, 09.00, 11.30, 16.30, 19.00\",
+           \"Website\": \"http://www.parokimbk.or.id\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.1902109,
+           \"Long\": 106.7783257
+         },
+         {
+           \"id\": 23,
+           \"NamaGereja\": \"Paroki Maria Kusuma Karmel - Meruya\",
+           \"AlamatGereja\": \"Jl. Kusuma, Kav. DKI, Meruya Selatan, Jakarta Barat\",
+           \"Telp\": \"(021) 585-8047\",
+           \"JadwalMisa\": \"Misa Harian: 05.45\nSabtu: 16.30 dan 19.00\nMinggu: 06.00, 08.00, 10.30, 16.30 dan 19.00\",
+           \"Website\": \"http://www.parokimkk.org\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.2089177,
+           \"Long\": 106.7262427
+         },
+         {
+           \"id\": 24,
+           \"NamaGereja\": \"Unika Atma Jaya – Carol Woytyla Building\",
+           \"AlamatGereja\": \"Lantai 13, Jl.Jend.Sudirman No.29, Jakarta\",
+           \"Telp\": \"\",
+           \"JadwalMisa\": \"Semua Misa bhs.Inggris: \nSabtu Sore: 17.30 \nMinggu: 09.00, 10.30, 17.30\",
+           \"Website\": \"\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.2191402,
+           \"Long\": 106.813674
+         },
+         {
+           \"id\": 25,
+           \"NamaGereja\": \"Gereja Katolik Santo Vincentius Pallotti\",
+           \"AlamatGereja\": \"Villa Taman Bandara, Jakarta\",
+           \"Telp\": \"\",
+           \"JadwalMisa\": \"Minggu I, III, V dan Sabtu: 17.30\nMinggu II dan IV: 17.30\",
+           \"Website\": \"\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.0915871,
+           \"Long\": 106.6968289
+         },
+         {
+           \"id\": 26,
+           \"NamaGereja\": \"Paroki St.Thomas Rasul - Bojong Indah\",
+           \"AlamatGereja\": \"\",
+           \"Telp\": \"\",
+           \"JadwalMisa\": \"Misa Harian: \nSenin dan Jumat pk 19.00\nSelasa – Rabu – Kamis pk 05.45\nSabtu Sore: 16.00 dan 18.00\nMinggu 06.00, 08.30, 16.00, 18.00\n\nMisa Devosi St. Peregrinus utk mendoakan org sakit: setiap Rabu Pertama pk 19.00\n\nAdorasi Sakramen MahaKudus:\nSebulan sekali, sehabis Misa Jumat Pertama (20.00 s/d 22.30)\",
+           \"Website\": \"\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.1692948,
+           \"Long\": 106.7236195
+         },
+         {
+           \"id\": 27,
+           \"NamaGereja\": \"Paroki Trinitas - Cengkareng\",
+           \"AlamatGereja\": \"Jl.Utama III No.23, Jakarta 11730\",
+           \"Telp\": \"(021) 619-3882, (021) 619-1628\",
+           \"JadwalMisa\": \"Misa Harian (Senin-Kamis, Sabtu) : 05.45\nJumat : 19.00\nSabtu Sore: 17.00\nMinggu: 06.00, 08.30, 17.00\",
+           \"Website\": \"http://www.trinitas.or.id\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.1468514,
+           \"Long\": 106.7229989
+         },
+         {
+           \"id\": 28,
+           \"NamaGereja\": \"Paroki Kosambi Baru (Gereja St Matias Rasul)\",
+           \"AlamatGereja\": \"Perumahan Kosambi Baru Block C6/36, Duri Kosambi, Jakarta 11750\",
+           \"Telp\": \"(021) 5411509\",
+           \"JadwalMisa\": \"Misa harian: Senin, Rabu, Kamis – Pkl. 05.45\nSelasa dan Jumat – Pkl. 19.00\nSabtu – Pkl.17.00\nMinggu – Pkl. 06.30, 8.30 dan 17.00\",
+           \"Website\": \"http://www.parokikosambibaru.org\",
+           \"Daerah\": \"Jakarta Barat\",
+           \"Lat\": -6.1740577,
+           \"Long\": 106.7120836
          }
         ]
 
